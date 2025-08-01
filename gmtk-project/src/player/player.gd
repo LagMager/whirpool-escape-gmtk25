@@ -16,7 +16,6 @@ func _physics_process(delta):
 	apply_friction(delta)
 	calculate_steering(delta)
 	velocity += acceleration * delta
-	print(velocity)
 	move_and_slide()
 
 ## Gets the input from the player's controller.
