@@ -1,27 +1,27 @@
 extends CharacterBody2D
 #the player
 @onready var player = $"."
-
+@onready var anim = $AnimationPlayer
 var ship_base = 25
 var steering_angle = 15 
-var speed = 260
+var speed = 300  # Reduced from 260
 
 #needed for magnitude
 var mass = 1
 var angle = 0
 var radius = 0
-var centre_point = Vector2(245,108)
+var centre_point = Vector2(240,135)
 var orbit = 180
 var steer_direction
 var acceleration = Vector2.ZERO
 var friciton = -55
 var drag = -0.09
 
-var max_health: int = 4
-var current_health : int
+@export var player_health : Health
 
 func _ready():
-	current_health = max_health
+	player_health.died.connect(die)
+	player_health.reset()
 
 
 func _physics_process(delta):
@@ -39,9 +39,9 @@ func _physics_process(delta):
 	var directed_vector = centre_point - player.position
 	var normalised_direction = directed_vector.normalized()
 	
-	#this allows for the contant motion 
+	#this allows for the contant motion - reduced from 5 to 3
 	var forward_vector = transform.x
-	velocity += forward_vector *  5
+	velocity += forward_vector * 5
 	#print(normalised_direction)
 	
 	#this is the centripetal force calcuations
@@ -52,7 +52,7 @@ func _physics_process(delta):
 	
 	#print(magnitude)
 	#this is is where the force is actually applied and where you can modify its strength 
-	var circle_round_force = normalised_direction * magnitude *6
+	var circle_round_force = normalised_direction * magnitude * 6
 	velocity += circle_round_force * delta
 	#keeps 
 	if directed_vector.length() > orbit:
@@ -76,6 +76,7 @@ func calculate_steering(delta):
 	velocity = new_direction * velocity.length()
 	rotation = new_direction.angle()
 
+
 ## Applies a force of friction to the player when not accelerating
 func apply_friction(delta):
 	if acceleration == Vector2.ZERO and velocity.length() < 50:
@@ -86,9 +87,13 @@ func apply_friction(delta):
 
 
 func take_damage(amount: int = 1) -> void:
-	current_health -= amount
-	if current_health <= 0:
-		die()
+	if anim.is_playing():
+		return
+	player_health.take_damage(amount)
+	anim.play("Blink")
+	speed *= 0.4
+	await anim.animation_finished
+	speed = speed / 0.4
 
 func die() -> void:
 	#Add trigger later

@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://demwoxmnd0u4d"]
+
+[ext_resource type="Script" uid="uid://dfqr16ayp25tc" path="res://src/Whirlpool/whirlpool.gd" id="1_07wi5"]
+[ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="2_5hnuy"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5hnuy"]
+radius = 135.0
+
+[node name="Whirlpool" type="Node2D"]
+script = ExtResource("1_07wi5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_5hnuy")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5hnuy")

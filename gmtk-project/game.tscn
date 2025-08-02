@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://c3j3skcj6xjdn"]
+
+[ext_resource type="PackedScene" uid="uid://du8cjtq7drcia" path="res://src/UI/UI.tscn" id="1_e2o6t"]
+[ext_resource type="PackedScene" uid="uid://p28qkgaprhrj" path="res://src/player/player.tscn" id="2_feb5d"]
+[ext_resource type="PackedScene" uid="uid://demwoxmnd0u4d" path="res://src/Whirlpool/whirlpool.tscn" id="3_feb5d"]
+
+[node name="Game" type="Node2D"]
+
+[node name="UI" parent="." instance=ExtResource("1_e2o6t")]
+
+[node name="Player" parent="." instance=ExtResource("2_feb5d")]
+position = Vector2(112, 174)
+
+[node name="Whirlpool" parent="." instance=ExtResource("3_feb5d")]
+position = Vector2(240, 135)

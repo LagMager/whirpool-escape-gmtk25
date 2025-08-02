@@ -1,16 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://du8cjtq7drcia"]
+[gd_scene load_steps=6 format=3 uid="uid://du8cjtq7drcia"]
 
 [ext_resource type="Texture2D" uid="uid://cfrsliwicjw13" path="res://assets/sprites/topHealthBar.png" id="1_22rot"]
 [ext_resource type="FontFile" uid="uid://b7i8d3k6310u" path="res://assets/fonts/Early GameBoy.ttf" id="1_m333m"]
+[ext_resource type="Script" uid="uid://d0g7830p5vped" path="res://src/UI/health_bar_container.gd" id="2_04dj0"]
 [ext_resource type="Texture2D" uid="uid://bvhnjkjtjsdph" path="res://assets/sprites/bottomHealthBar.png" id="2_m333m"]
+[ext_resource type="Resource" uid="uid://bmyhlh4mnmiuy" path="res://src/Resources/PlayerHealth.tres" id="3_3rjec"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="TopBar" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 48.0
+grow_horizontal = 2
 
 [node name="Background" type="ColorRect" parent="TopBar"]
 layout_mode = 1
@@ -53,13 +57,13 @@ text = "000000
 [node name="HealthBarContainer" type="CenterContainer" parent="TopBar/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("2_04dj0")
+player_health = ExtResource("3_3rjec")
 
 [node name="HealthBar" type="TextureProgressBar" parent="TopBar/HBoxContainer/HealthBarContainer"]
 texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 0
-max_value = 4.0
-value = 3.0
 texture_over = ExtResource("1_22rot")
 texture_progress = ExtResource("2_m333m")
 
