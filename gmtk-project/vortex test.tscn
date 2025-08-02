@@ -1,20 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://7p4wien6onex"]
+[gd_scene load_steps=6 format=3 uid="uid://7p4wien6onex"]
 
 [ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="3_6v05p"]
-[ext_resource type="Script" path="res://vortex.gd" id="3_u4d5y"]
+[ext_resource type="Script" uid="uid://8wiubbhup483" path="res://addons/donut_collision_polygon2D/donut_collision_polygon2D.gd" id="3_u4d5y"]
 [ext_resource type="PackedScene" uid="uid://p28qkgaprhrj" path="res://src/player/player.tscn" id="4_6v05p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6v05p"]
-radius = 259.0
+radius = 231.366
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u4d5y"]
+radius = 225.009
 
 [node name="Node2D" type="Node2D"]
 
-[node name="Player" parent="." groups=["player"] instance=ExtResource("4_6v05p")]
-position = Vector2(138, -12)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(237, 129)
-zoom = Vector2(0.53, 0.53)
+[node name="Player" parent="." instance=ExtResource("4_6v05p")]
+position = Vector2(540, 75)
+floor_stop_on_slope = false
+floor_block_on_wall = false
+floor_max_angle = 3.14159
+floor_snap_length = 20.5
+safe_margin = 1.366
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(238, 129)
@@ -22,9 +26,9 @@ gravity_space_override = 1
 gravity_point = true
 gravity_point_center = Vector2(245, 108.195)
 gravity_direction = Vector2(245, 108.195)
-script = ExtResource("3_u4d5y")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
 modulate = Color(0.624071, 1, 0.553101, 1)
 shape = SubResource("CircleShape2D_6v05p")
 
@@ -32,7 +36,25 @@ shape = SubResource("CircleShape2D_6v05p")
 scale = Vector2(0.245, 0.245)
 texture = ExtResource("3_6v05p")
 
-[node name="Marker2D" type="Marker2D" parent="."]
-position = Vector2(245, 108.195)
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_u4d5y")
 
-[connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(238, 129)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(240.225, 135.395)
+zoom = Vector2(0.725, 0.725)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(22.345, 1.035)
+collision_layer = 0
+
+[node name="DonutCollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(238, 130)
+polygon = PackedVector2Array(1.28715e-14, -210.215, 20.6047, -209.203, 41.0109, -206.176, 61.0222, -201.163, 80.4458, -194.213, 99.0947, -185.393, 116.789, -174.787, 133.359, -162.498, 148.644, -148.644, 162.498, -133.359, 174.787, -116.789, 185.393, -99.0947, 194.213, -80.4458, 201.163, -61.0222, 206.176, -41.0109, 209.203, -20.6047, 210.215, 0, 209.203, 20.6047, 206.176, 41.0109, 201.163, 61.0222, 194.213, 80.4458, 185.393, 99.0947, 174.787, 116.789, 162.498, 133.359, 148.644, 148.644, 133.359, 162.498, 116.789, 174.787, 99.0947, 185.393, 80.4458, 194.213, 61.0222, 201.163, 41.0109, 206.176, 20.6047, 209.203, 1.28715e-14, 210.215, -20.6047, 209.203, -41.0109, 206.176, -61.0222, 201.163, -80.4458, 194.213, -99.0947, 185.393, -116.789, 174.787, -133.359, 162.498, -148.644, 148.644, -162.498, 133.359, -174.787, 116.789, -185.393, 99.0947, -194.213, 80.4458, -201.163, 61.0222, -206.176, 41.0109, -209.203, 20.6047, -210.215, 2.57431e-14, -209.203, -20.6047, -206.176, -41.0109, -201.163, -61.0222, -194.213, -80.4458, -185.393, -99.0947, -174.787, -116.789, -162.498, -133.359, -148.644, -148.644, -133.359, -162.498, -116.789, -174.787, -99.0947, -185.393, -80.4458, -194.213, -61.0222, -201.163, -41.0109, -206.176, -20.6047, -209.203, -3.86146e-14, -210.215, -3.82472e-14, -208.215, -20.4086, -207.212, -40.6207, -204.214, -60.4416, -199.249, -79.6804, -192.366, -98.1519, -183.629, -115.678, -173.124, -132.09, -160.952, -147.23, -147.23, -160.952, -132.09, -173.124, -115.678, -183.629, -98.1519, -192.366, -79.6804, -199.249, -60.4416, -204.214, -40.6207, -207.212, -20.4086, -208.215, 2.54981e-14, -207.212, 20.4086, -204.214, 40.6207, -199.249, 60.4416, -192.366, 79.6804, -183.629, 98.1519, -173.124, 115.678, -160.952, 132.09, -147.23, 147.23, -132.09, 160.952, -115.678, 173.124, -98.1519, 183.629, -79.6804, 192.366, -60.4416, 199.249, -40.6207, 204.214, -20.4086, 207.212, 1.27491e-14, 208.215, 20.4086, 207.212, 40.6207, 204.214, 60.4416, 199.249, 79.6804, 192.366, 98.1519, 183.629, 115.678, 173.124, 132.09, 160.952, 147.23, 147.23, 160.952, 132.09, 173.124, 115.678, 183.629, 98.1519, 192.366, 79.6804, 199.249, 60.4416, 204.214, 40.6207, 207.212, 20.4086, 208.215, 0, 207.212, -20.4086, 204.214, -40.6207, 199.249, -60.4416, 192.366, -79.6804, 183.629, -98.1519, 173.124, -115.678, 160.952, -132.09, 147.23, -147.23, 132.09, -160.952, 115.678, -173.124, 98.1519, -183.629, 79.6804, -192.366, 60.4416, -199.249, 40.6207, -204.214, 20.4086, -207.212, 1.27491e-14, -208.215, 0.0001, -210.215)
+script = ExtResource("3_u4d5y")
+radius = 209.215
+quality = 64
+metadata/_custom_type_script = "uid://8wiubbhup483"

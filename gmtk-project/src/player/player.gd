@@ -7,10 +7,11 @@ var steering_angle = 15
 var speed = 260
 
 #needed for magnitude
-var mass = 0.5
+var mass = 1
 var angle = 0
 var radius = 0
 var centre_point = Vector2(245,108)
+var orbit = 180
 var steer_direction
 var acceleration = Vector2.ZERO
 var friciton = -55
@@ -40,7 +41,7 @@ func _physics_process(delta):
 	
 	#this allows for the contant motion 
 	var forward_vector = transform.x
-	velocity += forward_vector *  25 
+	velocity += forward_vector *  5
 	#print(normalised_direction)
 	
 	#this is the centripetal force calcuations
@@ -49,11 +50,14 @@ func _physics_process(delta):
 	if radius == 0:
 		magnitude = 0
 	
-	print(magnitude)
+	#print(magnitude)
 	#this is is where the force is actually applied and where you can modify its strength 
-	var circle_round_force = normalised_direction * magnitude *3
+	var circle_round_force = normalised_direction * magnitude *6
 	velocity += circle_round_force * delta
-
+	#keeps 
+	if directed_vector.length() > orbit:
+		var new_forward_vector = forward_vector.slerp(directed_vector, 3 * delta)
+		self.rotation = new_forward_vector.angle()
 ## Gets the input from the player's controller.
 func get_input():
 	var turn = Input.get_axis("steer_left","steer_right")
@@ -71,7 +75,6 @@ func calculate_steering(delta):
 	var new_direction : Vector2 = ship_rear.direction_to(ship_front)
 	velocity = new_direction * velocity.length()
 	rotation = new_direction.angle()
-
 
 ## Applies a force of friction to the player when not accelerating
 func apply_friction(delta):
