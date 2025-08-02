@@ -24,6 +24,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="GMTK project"
 
+[global_group]
+
+player=""
+
 [input]
 
 steer_left={
@@ -45,6 +49,10 @@ brake={
 "deadzone": 0.2,
 "events": []
 }
+
+[physics]
+
+2d/default_gravity=0.0
 
 [rendering]
 

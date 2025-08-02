@@ -1,0 +1,46 @@
+[gd_scene load_steps=5 format=3 uid="uid://cpajwdovn6k57"]
+
+[ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="3_6v05p"]
+[ext_resource type="Script" uid="uid://byysa4nclq0um" path="res://vortex.gd" id="3_u4d5y"]
+[ext_resource type="PackedScene" uid="uid://p28qkgaprhrj" path="res://src/player/player.tscn" id="4_6v05p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6v05p"]
+radius = 259.0
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." groups=["player"] instance=ExtResource("4_6v05p")]
+position = Vector2(138, -12)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(237, 129)
+zoom = Vector2(0.53, 0.53)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(238, 129)
+gravity_space_override = 1
+gravity_point = true
+gravity_point_center = Vector2(245, 108.195)
+gravity_direction = Vector2(245, 108.195)
+script = ExtResource("3_u4d5y")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(0.624071, 1, 0.553101, 1)
+shape = SubResource("CircleShape2D_6v05p")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+scale = Vector2(0.245, 0.245)
+texture = ExtResource("3_6v05p")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(245, 108.195)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(242, 107)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(-10, 278)
+build_mode = 1
+polygon = PackedVector2Array(112, -23, 207, -93, 264, -204, 259, -317, 212, -412, 136, -481, 40, -514, -61, -508, -145, -470, -180, -436, -219, -384, -238, -344, -249, -300, -249, -251, -248, -202, -226, -140, -204, -102, -160, -55, -106, -22, -46, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]

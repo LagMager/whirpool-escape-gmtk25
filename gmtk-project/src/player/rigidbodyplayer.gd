@@ -1,15 +1,10 @@
-extends CharacterBody2D
-
-@onready var player = $"."
+extends RigidBody2D
 
 var ship_base = 24
 var steering_angle = 15 
 var speed = 260
-var rospeed = 2
-var mass = 0.5
-var angle = 0
-var radius = 0
-var point = Vector2(245,108)
+var velocity = 0
+
 var steer_direction
 var acceleration = Vector2.ZERO
 var friciton = -55
@@ -21,23 +16,7 @@ func _physics_process(delta):
 	apply_friction(delta)
 	calculate_steering(delta)
 	velocity += acceleration * delta
-	move_and_slide()
-	#circular_motion()
-	#print(velocity.angle_to(point)) 
-	radius = player.position.distance_to(point)
-	#print(radius)
-	var directed_vector = point - player.position
-	var normalised_direction = directed_vector.normalized()
-	var forward_vector = transform.x
-	velocity += forward_vector *  25 
-	#print(normalised_direction)
-	var magnitude = (mass * directed_vector.length() **2)/radius 
-	if radius == 0:
-		magnitude = 0
-	
-	print(magnitude)
-	var circle_round_force = normalised_direction * magnitude *3
-	velocity += circle_round_force * delta
+	#move_and_slide()
 
 ## Gets the input from the player's controller.
 func get_input():
@@ -65,14 +44,3 @@ func apply_friction(delta):
 	var friction_force = velocity * friciton * delta
 	var drag_force = velocity * velocity.length() * drag * delta
 	acceleration += drag_force + friction_force
-
-
-
-#func circular_motion():
-	#radius = player.position.distance_to(point)
-	##print(radius)
-	#var directed_vector = point - player.position
-	#var normalised_direction = directed_vector.normalized()
-	##print(normalised_direction)
-	#var magnitude = (mass * directed_vector.length() **2)/radius 
-	#print(magnitude)
