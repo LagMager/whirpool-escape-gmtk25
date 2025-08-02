@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://dxtc2s3qd8arm"]
+
+[ext_resource type="Script" uid="uid://d3hce06kdh363" path="res://timer.gd" id="1_qdhxh"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qdhxh")
+
+[node name="timer" type="Label" parent="."]
+offset_left = 166.0
+offset_top = 104.0
+offset_right = 206.0
+offset_bottom = 127.0
+
+[node name="Timer" type="Timer" parent="timer"]
+autostart = true
+
+[connection signal="timeout" from="timer/Timer" to="." method="_on_timer_timeout"]
