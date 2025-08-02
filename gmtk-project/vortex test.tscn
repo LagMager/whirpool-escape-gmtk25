@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpajwdovn6k57"]
+[gd_scene load_steps=5 format=3 uid="uid://7p4wien6onex"]
 
 [ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="3_6v05p"]
-[ext_resource type="Script" uid="uid://byysa4nclq0um" path="res://vortex.gd" id="3_u4d5y"]
+[ext_resource type="Script" path="res://vortex.gd" id="3_u4d5y"]
 [ext_resource type="PackedScene" uid="uid://p28qkgaprhrj" path="res://src/player/player.tscn" id="4_6v05p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6v05p"]

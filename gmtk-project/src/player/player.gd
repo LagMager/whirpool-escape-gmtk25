@@ -2,9 +2,9 @@ extends CharacterBody2D
 
 @onready var player = $"."
 
-var ship_base = 24
+var ship_base = 25
 var steering_angle = 15 
-var speed = 260
+var speed = 100
 var rospeed = 2
 var mass = 0.5
 var angle = 0
@@ -14,6 +14,13 @@ var steer_direction
 var acceleration = Vector2.ZERO
 var friciton = -55
 var drag = -0.09
+
+var max_health: int = 4
+var current_health : int
+
+func _ready():
+	current_health = max_health
+
 
 func _physics_process(delta):
 	acceleration = Vector2.ZERO
@@ -67,6 +74,14 @@ func apply_friction(delta):
 	acceleration += drag_force + friction_force
 
 
+func take_damage(amount: int = 1) -> void:
+	current_health -= amount
+	if current_health <= 0:
+		die()
+
+func die() -> void:
+	#Add trigger later
+	print("im dead")
 
 #func circular_motion():
 	#radius = player.position.distance_to(point)

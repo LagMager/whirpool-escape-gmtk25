@@ -1,0 +1,69 @@
+[gd_scene load_steps=4 format=3 uid="uid://du8cjtq7drcia"]
+
+[ext_resource type="Texture2D" uid="uid://cfrsliwicjw13" path="res://assets/sprites/topHealthBar.png" id="1_22rot"]
+[ext_resource type="FontFile" uid="uid://b7i8d3k6310u" path="res://assets/fonts/Early GameBoy.ttf" id="1_m333m"]
+[ext_resource type="Texture2D" uid="uid://bvhnjkjtjsdph" path="res://assets/sprites/bottomHealthBar.png" id="2_m333m"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+
+[node name="TopBar" type="Control" parent="."]
+texture_filter = 1
+layout_mode = 3
+anchor_right = 1.0
+offset_bottom = 48.0
+
+[node name="Background" type="ColorRect" parent="TopBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.997159, 1)
+color = Color(0.105882, 0.113725, 0.203922, 1)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GoldContainer" type="Control" parent="TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar/HBoxContainer/GoldContainer"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/GoldContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="Label" parent="TopBar/HBoxContainer/GoldContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.768627, 0.780392, 0.933333, 1)
+theme_override_fonts/font = ExtResource("1_m333m")
+theme_override_font_sizes/font_size = 8
+text = "000000
+"
+
+[node name="HealthBarContainer" type="CenterContainer" parent="TopBar/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthBar" type="TextureProgressBar" parent="TopBar/HBoxContainer/HealthBarContainer"]
+texture_filter = 1
+layout_mode = 2
+size_flags_vertical = 0
+max_value = 4.0
+value = 3.0
+texture_over = ExtResource("1_22rot")
+texture_progress = ExtResource("2_m333m")
+
+[node name="PerkContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
+custom_minimum_size = Vector2(96, 0)
+layout_mode = 2
+size_flags_horizontal = 4
