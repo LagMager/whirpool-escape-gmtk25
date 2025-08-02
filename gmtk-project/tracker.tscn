@@ -1,0 +1,54 @@
+[gd_scene load_steps=7 format=3 uid="uid://cnvsn6uq2xc01"]
+
+[ext_resource type="Script" uid="uid://dl2ygricflo4m" path="res://loop tracker.gd" id="1_hcafx"]
+[ext_resource type="Script" uid="uid://b40u41loyp1cl" path="res://loop_display.gd" id="2_oxxdj"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_oxxdj"]
+b = Vector2(0, -280)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_roy7q"]
+b = Vector2(-350, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_usr2q"]
+b = Vector2(350, 0)
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_vftbd"]
+b = Vector2(0, 280)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_hcafx")
+
+[node name="north" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="north"]
+shape = SubResource("SegmentShape2D_oxxdj")
+
+[node name="east" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="east"]
+shape = SubResource("SegmentShape2D_roy7q")
+
+[node name="west" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="west"]
+shape = SubResource("SegmentShape2D_usr2q")
+
+[node name="south" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="south"]
+shape = SubResource("SegmentShape2D_vftbd")
+
+[node name="Label" type="Label" parent="."]
+texture_filter = 6
+offset_left = -148.0
+offset_top = -121.0
+offset_right = -70.0
+offset_bottom = -96.0
+text = "loops:"
+script = ExtResource("2_oxxdj")
+
+[connection signal="loop_tick" from="." to="Label" method="_on_node_2d_loop_tick"]
+[connection signal="body_entered" from="north" to="." method="_on_north_body_entered"]
+[connection signal="body_entered" from="east" to="." method="_on_east_body_entered"]
+[connection signal="body_entered" from="west" to="." method="_on_west_body_entered"]
+[connection signal="body_entered" from="south" to="." method="_on_south_body_entered"]

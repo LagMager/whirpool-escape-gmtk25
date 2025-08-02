@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://7p4wien6onex"]
+[gd_scene load_steps=8 format=3 uid="uid://7p4wien6onex"]
 
 [ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="3_6v05p"]
+[ext_resource type="PackedScene" uid="uid://demwoxmnd0u4d" path="res://src/Whirlpool/whirlpool.tscn" id="3_u4d5y"]
 [ext_resource type="PackedScene" uid="uid://p28qkgaprhrj" path="res://src/player/player.tscn" id="4_6v05p"]
+[ext_resource type="PackedScene" uid="uid://dfd0nj1to81fy" path="res://lesser_whirlpool.tscn" id="4_2478y"]
+[ext_resource type="PackedScene" uid="uid://cnvsn6uq2xc01" path="res://tracker.tscn" id="5_2478y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6v05p"]
 radius = 231.366
@@ -9,7 +12,7 @@ radius = 231.366
 [sub_resource type="CircleShape2D" id="CircleShape2D_u4d5y"]
 radius = 225.009
 
-[node name="Node2D" type="Node2D"]
+[node name="Node2D2" type="Node2D"]
 
 [node name="Player" parent="." instance=ExtResource("4_6v05p")]
 position = Vector2(540, 75)
@@ -18,6 +21,7 @@ floor_block_on_wall = false
 floor_max_angle = 3.14159
 floor_snap_length = 20.5
 safe_margin = 1.366
+player_health = null
 
 [node name="Area2D" type="Area2D" parent="."]
 position = Vector2(238, 129)
@@ -46,6 +50,11 @@ position = Vector2(238, 129)
 offset = Vector2(240.225, 135.395)
 zoom = Vector2(0.725, 0.725)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(22.345, 1.035)
-collision_layer = 0
+[node name="Whirlpool" parent="." instance=ExtResource("3_u4d5y")]
+position = Vector2(239, 128)
+
+[node name="lesser whirlpool" parent="." instance=ExtResource("4_2478y")]
+position = Vector2(237, 127)
+
+[node name="Node2D" parent="." instance=ExtResource("5_2478y")]
+position = Vector2(237, 128)

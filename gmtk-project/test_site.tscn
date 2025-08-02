@@ -6,3 +6,4 @@
 
 [node name="Player" parent="." instance=ExtResource("1_xwwfy")]
 position = Vector2(150, 89)
+player_health = null

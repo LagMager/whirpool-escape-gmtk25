@@ -11,7 +11,7 @@ var mass = 1
 var angle = 0
 var radius = 0
 var centre_point = Vector2(240,135)
-var orbit = 180
+var orbit = 190
 var steer_direction
 var acceleration = Vector2.ZERO
 var friciton = -55
@@ -20,8 +20,9 @@ var drag = -0.09
 @export var player_health : Health
 
 func _ready():
-	player_health.died.connect(die)
-	player_health.reset()
+	pass
+	#player_health.died.connect(die)
+	#player_health.reset()
 
 
 func _physics_process(delta):
@@ -41,11 +42,13 @@ func _physics_process(delta):
 	
 	#this allows for the contant motion - reduced from 5 to 3
 	var forward_vector = transform.x
+	
 	velocity += forward_vector * 5
 	#print(normalised_direction)
 	
 	#this is the centripetal force calcuations
-	var magnitude = (mass * directed_vector.length() **2)/radius 
+	var magnitude = (mass * directed_vector.length() **2)/radius
+	
 	#this protects from divide by 0 errors
 	if radius == 0:
 		magnitude = 0
@@ -58,6 +61,9 @@ func _physics_process(delta):
 	if directed_vector.length() > orbit:
 		var new_forward_vector = forward_vector.slerp(directed_vector, 3 * delta)
 		self.rotation = new_forward_vector.angle()
+		
+	if velocity == Vector2(0,0):
+		print("go")
 ## Gets the input from the player's controller.
 func get_input():
 	var turn = Input.get_axis("steer_left","steer_right")
