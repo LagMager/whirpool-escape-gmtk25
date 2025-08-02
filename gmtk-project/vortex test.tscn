@@ -35,12 +35,4 @@ texture = ExtResource("3_6v05p")
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(245, 108.195)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(242, 107)
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
-position = Vector2(-10, 278)
-build_mode = 1
-polygon = PackedVector2Array(112, -23, 207, -93, 264, -204, 259, -317, 212, -412, 136, -481, 40, -514, -61, -508, -145, -470, -180, -436, -219, -384, -238, -344, -249, -300, -249, -251, -248, -202, -226, -140, -204, -102, -160, -55, -106, -22, -46, -1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
-
 [connection signal="body_entered" from="Area2D" to="Player" method="_on_area_2d_body_entered"]
