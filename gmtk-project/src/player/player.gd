@@ -1,15 +1,16 @@
 extends CharacterBody2D
-
+#the player
 @onready var player = $"."
 
 var ship_base = 25
 var steering_angle = 15 
-var speed = 100
-var rospeed = 2
+var speed = 260
+
+#needed for magnitude
 var mass = 0.5
 var angle = 0
 var radius = 0
-var point = Vector2(245,108)
+var centre_point = Vector2(245,108)
 var steer_direction
 var acceleration = Vector2.ZERO
 var friciton = -55
@@ -29,20 +30,27 @@ func _physics_process(delta):
 	calculate_steering(delta)
 	velocity += acceleration * delta
 	move_and_slide()
-	#circular_motion()
+	
 	#print(velocity.angle_to(point)) 
-	radius = player.position.distance_to(point)
+	radius = player.position.distance_to(centre_point)
 	#print(radius)
-	var directed_vector = point - player.position
+	#this creates a vector from the player to the centre point which is then normalised
+	var directed_vector = centre_point - player.position
 	var normalised_direction = directed_vector.normalized()
+	
+	#this allows for the contant motion 
 	var forward_vector = transform.x
 	velocity += forward_vector *  25 
 	#print(normalised_direction)
+	
+	#this is the centripetal force calcuations
 	var magnitude = (mass * directed_vector.length() **2)/radius 
+	#this protects from divide by 0 errors
 	if radius == 0:
 		magnitude = 0
 	
 	print(magnitude)
+	#this is is where the force is actually applied and where you can modify its strength 
 	var circle_round_force = normalised_direction * magnitude *3
 	velocity += circle_round_force * delta
 
