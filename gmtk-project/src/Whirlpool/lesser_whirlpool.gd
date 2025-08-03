@@ -1,7 +1,7 @@
 extends Node2D
 
-@export var pull_strength := 5.0
-@export var spin_strength := -5.0
+@export var pull_strength := 3.0
+@export var spin_strength := -3.0
 
 
 func _process(delta):

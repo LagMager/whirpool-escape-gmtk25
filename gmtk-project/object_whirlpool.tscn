@@ -20,6 +20,8 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_r8tg8")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 modulate = Color(0.416181, 0.795644, 0.45679, 1)
@@ -41,6 +43,8 @@ position = Vector2(125.66, -384.44)
 rotation = 1.57952
 
 [node name="Area2D2" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
 position = Vector2(-0.5, -0.5)

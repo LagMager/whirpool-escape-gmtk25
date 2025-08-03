@@ -7,14 +7,16 @@ extends Node2D
 func _process(delta):
 	rotation += 1.0 * delta
 	for body in get_overlapping_bodies():
-		if body is Node2D:
+		if body is RigidBody2D:
 			apply_pull(body, delta)
+		else:
+			pass
 
 func get_overlapping_bodies() -> Array:
 	var area = $Area2D
 	return area.get_overlapping_bodies()
 
-func apply_pull(target: Node2D, delta: float):
+func apply_pull(target: RigidBody2D, delta: float):
 	var dir = (global_position - target.global_position).normalized()
 	var perpendicular = Vector2(-dir.y, dir.x)  # 90° rotated vector for spin
 

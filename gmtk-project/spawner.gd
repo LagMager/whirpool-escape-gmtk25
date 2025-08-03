@@ -31,11 +31,14 @@ func spawn(pos):
 
 
 func _on_timer_timeout() -> void:
-	timer.wait_time = randi_range(1,40)
+	timer.wait_time = randi_range(5,20)
 	print("doh")
 	spawn(pos)
 
 
 func _on_area_2d_2_body_entered(body: Node2D) -> void:
 	print("work?")
+	if body.is_in_group("player"):
+		print("player caught")
 	body.queue_free()
+	

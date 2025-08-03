@@ -14,15 +14,15 @@ var centre_point = Vector2(240,135)
 var orbit = 190
 var steer_direction
 var acceleration = Vector2.ZERO
-var friciton = -55
+var friciton = -50
 var drag = -0.09
 
 @export var player_health : Health
 
 func _ready():
 	pass
-	#player_health.died.connect(die)
-	#player_health.reset()
+	player_health.died.connect(die)
+	player_health.reset()
 
 
 func _physics_process(delta):
@@ -32,6 +32,7 @@ func _physics_process(delta):
 	calculate_steering(delta)
 	velocity += acceleration * delta
 	move_and_slide()
+
 	
 	#print(velocity.angle_to(point)) 
 	radius = player.position.distance_to(centre_point)
@@ -53,9 +54,10 @@ func _physics_process(delta):
 	if radius == 0:
 		magnitude = 0
 	
-	#print(magnitude)
+	
 	#this is is where the force is actually applied and where you can modify its strength 
 	var circle_round_force = normalised_direction * magnitude * 6
+	
 	velocity += circle_round_force * delta
 	#keeps 
 	if directed_vector.length() > orbit:
@@ -69,7 +71,11 @@ func get_input():
 	var turn = Input.get_axis("steer_left","steer_right")
 	steer_direction = turn * deg_to_rad(steering_angle)
 	if Input.is_action_pressed("accelerate"):
-		acceleration = transform.x * speed
+		acceleration = transform.x * speed 
+		
+	if acceleration == Vector2(0,0):
+		acceleration = transform.x * speed /2
+		
 
 
 ## Calculates the direction of steering.
@@ -104,12 +110,3 @@ func take_damage(amount: int = 1) -> void:
 func die() -> void:
 	#Add trigger later
 	print("im dead")
-
-#func circular_motion():
-	#radius = player.position.distance_to(point)
-	##print(radius)
-	#var directed_vector = point - player.position
-	#var normalised_direction = directed_vector.normalized()
-	##print(normalised_direction)
-	#var magnitude = (mass * directed_vector.length() **2)/radius 
-	#print(magnitude)

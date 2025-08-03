@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="2_5hnuy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5hnuy"]
-radius = 120.48
+radius = 63.0317
 
 [node name="Whirlpool" type="Node2D"]
 script = ExtResource("1_07wi5")

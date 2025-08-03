@@ -26,19 +26,23 @@ func _process(delta: float) -> void:
 
 
 func _on_north_body_entered(body: Node2D) -> void:
-	north = true
+	if body.is_in_group("player"):
+		north = true
 	
 
 func _on_east_body_entered(body: Node2D) -> void:
-	east = true
+	if body.is_in_group("player"):
+		east = true
 
 
 func _on_west_body_entered(body: Node2D) -> void:
-	west = true
+	if body.is_in_group("player"):
+		west = true
 
 
 func _on_south_body_entered(body: Node2D) -> void:
-	south = true
+	if body.is_in_group("player"):
+		south = true
 
 
 func loop_update():
