@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://c14j78qt04j1h"]
+[gd_scene load_steps=6 format=3 uid="uid://c14j78qt04j1h"]
 
 [ext_resource type="Script" uid="uid://ycp6bmammbwa" path="res://src/Whirlpool/object_whirlpool.gd" id="1_x67ng"]
 [ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="2_r8tg8"]
@@ -6,6 +6,9 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_20qj0"]
 radius = 441.43
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ggct5"]
+size = Vector2(33, 31)
 
 [node name="object whirlpool" type="Node2D"]
 position = Vector2(238, 144)
@@ -24,4 +27,24 @@ shape = SubResource("CircleShape2D_20qj0")
 debug_color = Color(0.708072, 0, 0.227131, 0.42)
 
 [node name="spawner" parent="." instance=ExtResource("3_r8tg8")]
-position = Vector2(-149, -76)
+position = Vector2(-400, -138)
+
+[node name="spawner2" parent="." instance=ExtResource("3_r8tg8")]
+position = Vector2(388.72, -109)
+
+[node name="spawner3" parent="." instance=ExtResource("3_r8tg8")]
+position = Vector2(121.955, 380.52)
+rotation = 1.5708
+
+[node name="spawner4" parent="." instance=ExtResource("3_r8tg8")]
+position = Vector2(125.66, -384.44)
+rotation = 1.57952
+
+[node name="Area2D2" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+position = Vector2(-0.5, -0.5)
+shape = SubResource("RectangleShape2D_ggct5")
+
+[connection signal="body_entered" from="Area2D2" to="spawner4" method="_on_area_2d_2_body_entered"]
+[connection signal="body_entered" from="Area2D2" to="Area2D2" method="_on_body_entered"]
