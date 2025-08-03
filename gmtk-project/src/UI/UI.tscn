@@ -1,73 +1,100 @@
-[gd_scene load_steps=6 format=3 uid="uid://du8cjtq7drcia"]
+[gd_scene load_steps=11 format=3 uid="uid://du8cjtq7drcia"]
 
-[ext_resource type="Texture2D" uid="uid://cfrsliwicjw13" path="res://assets/sprites/topHealthBar.png" id="1_22rot"]
+[ext_resource type="Texture2D" uid="uid://b6qlse83nh5hm" path="res://assets/sprites/emptyPerk.png" id="1_gmx3g"]
 [ext_resource type="FontFile" uid="uid://b7i8d3k6310u" path="res://assets/fonts/Early GameBoy.ttf" id="1_m333m"]
 [ext_resource type="Script" uid="uid://d0g7830p5vped" path="res://src/UI/health_bar_container.gd" id="2_04dj0"]
-[ext_resource type="Texture2D" uid="uid://bvhnjkjtjsdph" path="res://assets/sprites/bottomHealthBar.png" id="2_m333m"]
-[ext_resource type="Resource" uid="uid://bmyhlh4mnmiuy" path="res://src/Resources/PlayerHealth.tres" id="3_3rjec"]
+[ext_resource type="Resource" uid="uid://bmyhlh4mnmiuy" path="res://src/Resources/PlayerHealth.tres" id="2_f5lgd"]
+[ext_resource type="Texture2D" uid="uid://cdpxgifidbtc0" path="res://assets/sprites/HealthBar.png" id="3_3rjec"]
+[ext_resource type="Texture2D" uid="uid://c8sddglvysvoe" path="res://assets/sprites/HealthBarUI.png" id="3_04dj0"]
+[ext_resource type="Texture2D" uid="uid://bfxi4jvrbilmd" path="res://assets/sprites/bottomTimeBar.png" id="3_6m732"]
+[ext_resource type="Texture2D" uid="uid://d0lc67gvpocph" path="res://assets/sprites/TopTimeBar.png" id="4_48qpi"]
+[ext_resource type="Script" uid="uid://b3sg520n5p1pa" path="res://src/UI/timer_container.gd" id="6_48qpi"]
+[ext_resource type="Resource" uid="uid://clj2xxsybdcsp" path="res://src/Resources/GameTime.tres" id="8_dhqo1"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="TopBar" type="Control" parent="."]
 texture_filter = 1
 layout_mode = 3
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 48.0
-grow_horizontal = 2
+anchors_preset = 0
+offset_left = 5.0
+offset_top = 10.0
+offset_right = 5.0
+offset_bottom = 58.0
 
-[node name="Background" type="ColorRect" parent="TopBar"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.997159, 1)
-color = Color(0.105882, 0.113725, 0.203922, 1)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="GoldContainer" type="Control" parent="TopBar/HBoxContainer"]
-custom_minimum_size = Vector2(96, 0)
+[node name="HealthControl" type="Control" parent="TopBar"]
 layout_mode = 2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar/HBoxContainer/GoldContainer"]
-layout_mode = 0
+anchors_preset = 0
 offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer/GoldContainer/HBoxContainer"]
-layout_mode = 2
-
-[node name="RichTextLabel" type="Label" parent="TopBar/HBoxContainer/GoldContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_colors/font_color = Color(0.768627, 0.780392, 0.933333, 1)
-theme_override_fonts/font = ExtResource("1_m333m")
-theme_override_font_sizes/font_size = 8
-text = "000000
-"
-
-[node name="HealthBarContainer" type="CenterContainer" parent="TopBar/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
 script = ExtResource("2_04dj0")
-player_health = ExtResource("3_3rjec")
+player_health = ExtResource("2_f5lgd")
 
-[node name="HealthBar" type="TextureProgressBar" parent="TopBar/HBoxContainer/HealthBarContainer"]
+[node name="HealthBar" type="TextureProgressBar" parent="TopBar/HealthControl"]
+layout_mode = 2
+offset_right = 72.0
+offset_bottom = 11.0
+max_value = 4.0
+value = 4.0
+texture_over = ExtResource("3_04dj0")
+texture_progress = ExtResource("3_3rjec")
+
+[node name="HealthBarLabel" type="Label" parent="TopBar/HealthControl"]
 texture_filter = 1
 layout_mode = 2
-size_flags_vertical = 0
-texture_over = ExtResource("1_22rot")
-texture_progress = ExtResource("2_m333m")
+offset_left = 19.0
+offset_right = 45.0
+offset_bottom = 10.0
+theme_override_fonts/font = ExtResource("1_m333m")
+theme_override_font_sizes/font_size = 8
+text = "4 / 4"
 
-[node name="PerkContainer" type="HBoxContainer" parent="TopBar/HBoxContainer"]
-custom_minimum_size = Vector2(96, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="TopBar"]
+layout_mode = 1
+offset_top = 13.0
+offset_right = 66.0
+offset_bottom = 92.0
+
+[node name="PerkContainer" type="GridContainer" parent="TopBar/VBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 4
+columns = 5
+
+[node name="Perk1" type="TextureRect" parent="TopBar/VBoxContainer/PerkContainer"]
+layout_mode = 2
+texture = ExtResource("1_gmx3g")
+
+[node name="Perk2" type="TextureRect" parent="TopBar/VBoxContainer/PerkContainer"]
+layout_mode = 2
+texture = ExtResource("1_gmx3g")
+
+[node name="Perk3" type="TextureRect" parent="TopBar/VBoxContainer/PerkContainer"]
+layout_mode = 2
+texture = ExtResource("1_gmx3g")
+
+[node name="Perk4" type="TextureRect" parent="TopBar/VBoxContainer/PerkContainer"]
+layout_mode = 2
+texture = ExtResource("1_gmx3g")
+
+[node name="Perk5" type="TextureRect" parent="TopBar/VBoxContainer/PerkContainer"]
+layout_mode = 2
+texture = ExtResource("1_gmx3g")
+
+[node name="TimerContainer" type="VBoxContainer" parent="TopBar/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("6_48qpi")
+time_data = ExtResource("8_dhqo1")
+
+[node name="TimeLabel" type="Label" parent="TopBar/VBoxContainer/TimerContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_m333m")
+theme_override_font_sizes/font_size = 8
+text = "TIME"
+
+[node name="TimeBar" type="TextureProgressBar" parent="TopBar/VBoxContainer/TimerContainer"]
+layout_mode = 2
+max_value = 30.0
+step = 0.01
+value = 30.0
+texture_under = ExtResource("3_6m732")
+texture_progress = ExtResource("4_48qpi")
+
+[node name="Timer" type="Timer" parent="TopBar/VBoxContainer/TimerContainer"]

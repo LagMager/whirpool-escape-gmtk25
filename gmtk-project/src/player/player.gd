@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 #the player
 @onready var player = $"."
 @onready var anim = $AnimationPlayer

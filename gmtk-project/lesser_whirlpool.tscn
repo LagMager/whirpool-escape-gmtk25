@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dfd0nj1to81fy"]
 
 [ext_resource type="Script" uid="uid://cujhi0hellukd" path="res://src/Whirlpool/lesser_whirlpool.gd" id="1_pmfla"]
-[ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="2_oqleb"]
+[ext_resource type="Texture2D" uid="uid://c83qojhh0o7qt" path="res://assets/sprites/whirlpool.png" id="2_pmfla"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5v1d5"]
 radius = 201.99
@@ -10,8 +10,8 @@ radius = 201.99
 script = ExtResource("1_pmfla")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_oqleb")
+texture_filter = 1
+texture = ExtResource("2_pmfla")
 
 [node name="Area2D" type="Area2D" parent="."]
 

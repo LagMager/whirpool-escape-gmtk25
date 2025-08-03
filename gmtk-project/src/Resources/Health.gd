@@ -13,6 +13,7 @@ func get_max_health() -> int:
 
 func take_damage(amount: int = 1):
 	current_health = max(current_health - amount, 0)
+	print(current_health)
 	emit_signal("health_changed", current_health, get_max_health())
 	if current_health == 0:
 		emit_signal("died")
@@ -23,7 +24,8 @@ func heal(amount: int = 1):
 
 func add_bonus_health(amount: int):
 	bonus_health += amount
-	current_health = min(current_health, get_max_health())
+	current_health = min(current_health + amount, get_max_health())
+	print("emiting signal")
 	emit_signal("health_changed", current_health, get_max_health())
 
 func reset():

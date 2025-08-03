@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://7p4wien6onex"]
+[gd_scene load_steps=12 format=3 uid="uid://7p4wien6onex"]
 
+[ext_resource type="PackedScene" uid="uid://du8cjtq7drcia" path="res://src/UI/UI.tscn" id="1_vm2v1"]
 [ext_resource type="Script" uid="uid://ci4q58cpnfive" path="res://src/Resources/Health.gd" id="2_1hqem"]
-[ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="3_6v05p"]
 [ext_resource type="PackedScene" uid="uid://demwoxmnd0u4d" path="res://src/Whirlpool/whirlpool.tscn" id="3_u4d5y"]
 [ext_resource type="PackedScene" uid="uid://p28qkgaprhrj" path="res://src/player/player.tscn" id="4_6v05p"]
 [ext_resource type="PackedScene" uid="uid://dfd0nj1to81fy" path="res://lesser_whirlpool.tscn" id="4_2478y"]
 [ext_resource type="PackedScene" uid="uid://cnvsn6uq2xc01" path="res://tracker.tscn" id="5_2478y"]
 [ext_resource type="PackedScene" uid="uid://c14j78qt04j1h" path="res://object_whirlpool.tscn" id="6_iuy8o"]
+[ext_resource type="PackedScene" uid="uid://bdlhs205aa2nc" path="res://src/Autoload/perk_manager.tscn" id="9_hi3jp"]
 
 [sub_resource type="Resource" id="Resource_vm2v1"]
 script = ExtResource("2_1hqem")
@@ -21,6 +22,15 @@ radius = 231.366
 radius = 225.009
 
 [node name="Node2D2" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -371.0
+offset_top = -332.0
+offset_right = 854.0
+offset_bottom = 595.0
+color = Color(0.345098, 0.623529, 0.988235, 1)
+
+[node name="UI" parent="." instance=ExtResource("1_vm2v1")]
 
 [node name="Player" parent="." instance=ExtResource("4_6v05p")]
 position = Vector2(540, 75)
@@ -42,10 +52,6 @@ gravity_direction = Vector2(245, 108.195)
 visible = false
 modulate = Color(0.624071, 1, 0.553101, 1)
 shape = SubResource("CircleShape2D_6v05p")
-
-[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
-scale = Vector2(0.245, 0.245)
-texture = ExtResource("3_6v05p")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
 visible = false
@@ -71,3 +77,5 @@ spin_strength = -20.0
 
 [node name="lesser whirlpool" parent="." instance=ExtResource("4_2478y")]
 position = Vector2(239, 128)
+
+[node name="PerkManager" parent="." instance=ExtResource("9_hi3jp")]

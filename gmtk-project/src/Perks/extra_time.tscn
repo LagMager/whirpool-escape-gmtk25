@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dvtbe7dtqf3vj"]
+
+[ext_resource type="Script" uid="uid://dq374sg7edto0" path="res://src/Perks/extra_time.gd" id="1_a2ste"]
+[ext_resource type="Resource" uid="uid://clj2xxsybdcsp" path="res://src/Resources/GameTime.tres" id="2_w8y84"]
+
+[node name="Node" type="Node"]
+script = ExtResource("1_a2ste")
+time_bonus = 10.0
+time_data = ExtResource("2_w8y84")
+perk_name = "Extra Time"
+description = "Add 5 seconds to the timer."
+apply_to_ui = true
+metadata/_custom_type_script = "uid://cw7gny7kmhutq"

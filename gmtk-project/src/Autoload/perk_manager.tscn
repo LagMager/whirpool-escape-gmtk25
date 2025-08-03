@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bdlhs205aa2nc"]
+
+[ext_resource type="Script" uid="uid://b5ung07lfughn" path="res://src/Autoload/PerkManager.gd" id="1_oh6aq"]
+
+[node name="PerkManager" type="Node"]
+script = ExtResource("1_oh6aq")

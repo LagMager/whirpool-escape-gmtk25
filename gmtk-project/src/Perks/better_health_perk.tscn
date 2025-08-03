@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ce8ryyt2sipcs"]
+
+[ext_resource type="Script" uid="uid://vt36wgjhfeiy" path="res://src/Perks/better_health_perk.gd" id="1_lwcd8"]
+[ext_resource type="Resource" uid="uid://bmyhlh4mnmiuy" path="res://src/Resources/PlayerHealth.tres" id="2_nedxy"]
+
+[node name="BetterHealthPerk" type="Node"]
+script = ExtResource("1_lwcd8")
+PlayerHealth = ExtResource("2_nedxy")
+perk_name = "Better Health"
+description = "Increases ship's health by 2"
+metadata/_custom_type_script = "uid://cw7gny7kmhutq"

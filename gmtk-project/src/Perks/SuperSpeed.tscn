@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dmwcw3si0x16x"]
+
+[ext_resource type="Script" uid="uid://pisb7liv5lni" path="res://SpeedBoost.gd" id="1_umi5o"]
+
+[node name="super_speed" type="Node"]
+script = ExtResource("1_umi5o")
+metadata/_custom_type_script = "uid://cw7gny7kmhutq"

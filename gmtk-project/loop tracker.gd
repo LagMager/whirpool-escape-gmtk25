@@ -13,7 +13,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	if north == true and east == true and west == true and south == true:
+	if north and east and west and south:
 		print("loop!")
 		looped = true
 		loop_update()

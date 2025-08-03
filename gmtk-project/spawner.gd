@@ -6,7 +6,7 @@ var pos = 0
 var instance
 @onready var timer = $Timer
 
-var object = preload("res://src/obstacle/Obstacle.tscn")
+var object = preload("res://src/obstacle/debrisObstacle.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	timer.start()
