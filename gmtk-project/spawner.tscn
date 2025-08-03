@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwico5c75cd3t"]
+
+[ext_resource type="Script" uid="uid://d0fnoh6lw01ru" path="res://spawner.gd" id="1_yp5lu"]
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_yp5lu"]
+a = Vector2(0, 320)
+b = Vector2(0, -50)
+
+[node name="spawner" type="Node2D"]
+position = Vector2(1, 1)
+script = ExtResource("1_yp5lu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_yp5lu")
+debug_color = Color(0.993769, 0, 0.232595, 0.42)
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

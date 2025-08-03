@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c14j78qt04j1h"]
+
+[ext_resource type="Script" uid="uid://ycp6bmammbwa" path="res://src/Whirlpool/object_whirlpool.gd" id="1_x67ng"]
+[ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="2_r8tg8"]
+[ext_resource type="PackedScene" uid="uid://bwico5c75cd3t" path="res://spawner.tscn" id="3_r8tg8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_20qj0"]
+radius = 441.43
+
+[node name="object whirlpool" type="Node2D"]
+position = Vector2(238, 144)
+script = ExtResource("1_x67ng")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+self_modulate = Color(0.707846, 0.000386875, 0.709332, 1)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_r8tg8")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(0.416181, 0.795644, 0.45679, 1)
+shape = SubResource("CircleShape2D_20qj0")
+debug_color = Color(0.708072, 0, 0.227131, 0.42)
+
+[node name="spawner" parent="." instance=ExtResource("3_r8tg8")]
+position = Vector2(-149, -76)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://7p4wien6onex"]
+[gd_scene load_steps=9 format=3 uid="uid://7p4wien6onex"]
 
 [ext_resource type="Texture2D" uid="uid://dinrm57x3vv11" path="res://icon.svg" id="3_6v05p"]
 [ext_resource type="PackedScene" uid="uid://demwoxmnd0u4d" path="res://src/Whirlpool/whirlpool.tscn" id="3_u4d5y"]
@@ -11,6 +11,10 @@ radius = 231.366
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_u4d5y"]
 radius = 225.009
+
+[sub_resource type="SegmentShape2D" id="SegmentShape2D_2478y"]
+a = Vector2(0, 320.07)
+b = Vector2(0, -50.625)
 
 [node name="Node2D2" type="Node2D"]
 
@@ -58,3 +62,6 @@ position = Vector2(237, 127)
 
 [node name="Node2D" parent="." instance=ExtResource("5_2478y")]
 position = Vector2(237, 128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("SegmentShape2D_2478y")

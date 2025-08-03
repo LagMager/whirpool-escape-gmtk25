@@ -16,4 +16,5 @@ texture = ExtResource("2_oqleb")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+modulate = Color(0.416181, 0.795644, 0.45679, 1)
 shape = SubResource("CircleShape2D_5v1d5")
